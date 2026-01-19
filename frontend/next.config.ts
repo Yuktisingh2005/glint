@@ -7,8 +7,11 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  experimental: {
-    missingSuspenseWithCSRBailout: false,
+  async generateStaticParams() {
+    return []
+  },
+  async generateBuildId() {
+    return 'build'
   },
   webpack(config, { isServer }) {
     // Example: Adding custom Webpack settings
