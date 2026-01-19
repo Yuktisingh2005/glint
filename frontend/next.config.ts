@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
   webpack(config, { isServer }) {
     // Example: Adding custom Webpack settings
     if (!isServer) {
