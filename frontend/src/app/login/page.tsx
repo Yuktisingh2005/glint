@@ -111,7 +111,7 @@ export default function LoginPage() {
       {/* Logo Header */}
       <header className="absolute top-4 left-6 z-10">
         <Link href="/">
-          <Image src="/logo.png" alt="Glint Logo" width={100} height={40} />
+          <Image src="/glint-logo.png" alt="Glint Logo" width={100} height={40} />
         </Link>
       </header>
 

@@ -23,7 +23,7 @@ export default function HeroPage() {
 
       {/* Header with Logo */}
       <header className="absolute top-4 left-6 z-10">
-        <Image src="/logo.png" alt="Glint Logo" width={100} height={40} />
+        <Image src="/glint-logo.png" alt="Glint Logo" width={100} height={40} />
       </header>
 
       {/* Hero Content */}
