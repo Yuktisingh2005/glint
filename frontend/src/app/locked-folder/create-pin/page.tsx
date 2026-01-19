@@ -28,7 +28,7 @@ export default function CreatePin() {
           router.replace("/locked-folder/enter-pin");
         }
       } catch (err) {
-        console.error("Error checking PIN status:", err.response || err);
+        console.error("Error checking PIN status:", err);
       }
     };
     checkPin();
