@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { Pencil, Save, CalendarDays, ImagePlus, Lock, X } from 'lucide-react';
+import { useTheme } from '@/components/ThemeProvider';
 
 interface User {
   _id: string;
@@ -15,6 +16,7 @@ interface User {
 }
 
 export default function ProfilePage() {
+  const { darkMode } = useTheme();
   const [user, setUser] = useState<User | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [form, setForm] = useState({ username: '', email: '', birthDate: '' });
@@ -167,17 +169,17 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-purple-200 via-pink-100 to-blue-200 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
+    <div className={`relative min-h-screen flex items-center justify-center px-4 py-10 ${darkMode ? 'bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900' : 'bg-gradient-to-br from-purple-200 via-pink-100 to-blue-200'}`}>
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="w-[200%] h-[200%] animate-backgroundMove bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-900 opacity-20 rotate-45 absolute top-0 left-0" />
+        <div className={`w-[200%] h-[200%] animate-backgroundMove opacity-20 rotate-45 absolute top-0 left-0 ${darkMode ? 'bg-gradient-to-r from-zinc-700 via-zinc-800 to-zinc-900' : 'bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400'}`} />
       </div>
 
       <motion.div
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 w-full max-w-md bg-white/30 dark:bg-zinc-800/40 backdrop-blur-lg rounded-2xl p-6 shadow-xl"
+        className={`relative z-10 w-full max-w-md backdrop-blur-lg rounded-2xl p-6 shadow-xl ${darkMode ? 'bg-zinc-800/40' : 'bg-white/30'}`}
       >
         <div className="flex flex-col items-center space-y-4">
           {/* Profile Picture Upload */}

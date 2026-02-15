@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useTheme } from "@/components/ThemeProvider";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export default function CreatePin() {
+  const { darkMode } = useTheme();
   const [pin, setPin] = useState("");
   const [confirmPin, setConfirmPin] = useState("");
   const [error, setError] = useState("");
@@ -76,8 +78,8 @@ export default function CreatePin() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-purple-500 to-indigo-600">
-      <div className="bg-white rounded-2xl shadow-xl p-8 w-96">
+    <div className={`flex items-center justify-center h-screen ${darkMode ? 'bg-gradient-to-r from-purple-900 to-indigo-900' : 'bg-gradient-to-r from-purple-500 to-indigo-600'}`}>
+      <div className={`rounded-2xl shadow-xl p-8 w-96 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
         <h2 className="text-2xl font-bold mb-4 text-center">Create Locked Folder PIN</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input

@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useTheme } from "@/components/ThemeProvider";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export default function EnterPin() {
+  const { darkMode } = useTheme();
   const [pin, setPin] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -47,7 +49,7 @@ export default function EnterPin() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-gray-700 to-gray-900">
+    <div className={`flex items-center justify-center h-screen ${darkMode ? 'bg-gradient-to-r from-gray-900 to-black' : 'bg-gradient-to-r from-gray-200 to-gray-400'}`}>
       <div className="bg-white rounded-2xl shadow-xl p-8 w-96">
         <h2 className="text-2xl font-bold mb-4 text-center">Enter PIN</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">

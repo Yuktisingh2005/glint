@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import UploadLocked from '@/components/UploadLocked';
 import LockedMediaPopup from '@/components/LockedMediaPopup';
+import { useTheme } from '@/components/ThemeProvider';
+import clsx from 'clsx';
 
 interface Media {
   _id: string;
@@ -16,6 +18,7 @@ interface Media {
 }
 
 export default function LockedFolderMain() {
+  const { darkMode } = useTheme();
   const [lockedMedia, setLockedMedia] = useState<Media[]>([]);
   const [popupMedia, setPopupMedia] = useState<Media | null>(null);
   const [openUpload, setOpenUpload] = useState(false);
@@ -76,10 +79,19 @@ export default function LockedFolderMain() {
   }, {});
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-white text-black transition-colors duration-700">
+    <div className={clsx("min-h-screen relative overflow-hidden transition-colors duration-700", darkMode ? "bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white" : "bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 text-gray-900")}>
       {/* Background animation */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="animate-backgroundMove bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300 opacity-30 w-[200%] h-[200%] rotate-45 absolute top-0 left-0" />
+        <motion.div
+          animate={{ x: [0, 100, -100, 0], y: [0, -50, 50, 0], scale: [1, 1.2, 1] }}
+          transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }}
+          className="absolute w-[500px] h-[500px] bg-purple-400/30 blur-3xl rounded-full top-[-100px] right-[-100px]"
+        />
+        <motion.div
+          animate={{ x: [-100, 50, 0], y: [0, 100, -50], scale: [1, 1.3, 1.2] }}
+          transition={{ repeat: Infinity, duration: 18, ease: "easeInOut" }}
+          className="absolute w-[600px] h-[600px] bg-pink-500/30 blur-3xl rounded-full bottom-[-150px] left-[-150px]"
+        />
       </div>
 
       {/* Header */}
