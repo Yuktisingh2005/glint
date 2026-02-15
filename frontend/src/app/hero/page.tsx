@@ -44,7 +44,7 @@ export default function HeroPage() {
           transition={{ duration: 1.2 }}
           className="text-5xl md:text-6xl font-extrabold text-pink-400 drop-shadow-lg"
         >
-          Welcome to Glintt✨
+          Welcome to Glint✨
         </motion.h1>
 
         <motion.h2
